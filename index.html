@@ -6,7 +6,6 @@
 <title>Make1ive Studio</title>
 <meta name="description" content="Make1ive Studio — Colibri AA, native-resolution anti-aliasing for Unity URP, and The Glass Ark, a game in development for Steam.">
 <link rel="icon" href="img/icon-32.png" sizes="32x32">
-<link rel="icon" href="img/icon-512.png" sizes="512x512">
 <link rel="apple-touch-icon" href="img/icon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Make1ive Studio">
@@ -18,6 +17,9 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0f12">
+<!-- шрифт запрашивается сразу с разметкой: без этого он ждал разбора стилей, и текст сперва рисовался запасным
+     шрифтом, а потом перескакивал — слово Максима 21.09.2026 «шрифты тоже как будто с задержкой небольшой подтянулись» -->
+<link rel="preload" href="font/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
 
 
@@ -499,7 +501,13 @@
       }
     }
 
-    function frame() {
+    // Не чаще 60 кадров в секунду: слово Максима 21.09.2026 «да, ты можешь ограничить до 60 фпс». Шаг искр задан
+    // на кадр, поэтому на экране 120 Гц они к тому же летели вдвое быстрее задуманного; теперь скорость одна везде.
+    var last = 0;
+    function frame(now) {
+      raf = requestAnimationFrame(frame);
+      if (now - last < 15.5) return;
+      last = now;
       ctx.clearRect(0, 0, w, h);
       ctx.globalCompositeOperation = "lighter";
       for (var i = 0; i < motes.length; i++) {
@@ -514,7 +522,6 @@
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";
-      raf = requestAnimationFrame(frame);
     }
 
     function start() { if (!running) { running = true; raf = requestAnimationFrame(frame); } }
