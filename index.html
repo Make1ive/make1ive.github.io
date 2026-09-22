@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Make1ive Studio</title>
+<meta name="description" content="Make1ive Studio — Colibri AA, native-resolution anti-aliasing for Unity URP, and The Glass Ark, a game in development for Steam.">
+<link rel="icon" href="img/icon-32.png" sizes="32x32">
+<link rel="icon" href="img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Make1ive Studio">
+<meta property="og:title" content="Make1ive Studio">
+<meta property="og:description" content="Colibri AA — ultralight CMAA-based anti-aliasing for Unity URP. And The Glass Ark, a game in development.">
+<meta property="og:url" content="https://make1ive.com/">
+<meta property="og:image" content="https://make1ive.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0f12">
+<link rel="stylesheet" href="site.css">
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Make1ive Studio, home">
+      <img src="img/mark.jpg" alt="">
+      <span>Make1ive Studio</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#colibri">Colibri AA</a>
+      <a href="#adapts">Auto-tuning</a>
+      <a href="#proof">Benchmarks</a>
+      <a href="#demo">Demo</a>
+      <a href="#games">The Glass Ark</a>
+      <a href="#studio">Support</a>
+    </nav>
+    <a class="btn primary get" href="#demo" data-fill="asset-store-listing">Get asset</a>
+  </div>
+</header>
+
+<section class="hero" id="top" aria-label="Make1ive Studio">
+  <img src="img/hero.jpg" alt="A hummingbird in flight, iridescent blue and green plumage lit against a dark ground" fetchpriority="high">
+  <canvas class="motes" id="motes" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">Colibri AA · Anti-aliasing for Unity URP</p>
+    <h1 class="display">Weightless. <span class="iris">Instant.</span> Exact.</h1>
+    <p class="lede">Colibri AA is an ultra-fast anti-aliasing suite built on CMAA2. Designed for the sharpest image with no blur, at the highest performance possible.</p>
+    <div class="cta">
+      <a class="btn primary" href="#demo">Watch the demo</a>
+      <button class="btn" type="button" id="open-docs">Documentation</button>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="colibri">
+  <div class="wrap">
+    <div class="head split">
+      <p class="eyebrow">Unity URP · one switch in the renderer</p>
+      <h2 class="display">Meet Colibri AA.</h2>
+      <p class="lede">Ultralight CMAA-based anti-aliasing for Unity URP, built around a simple idea: a cleaner image should keep its character.</p>
+    </div>
+
+    <div class="stage">
+      <div class="stage-bar">
+        <div class="tabs" role="list">
+          <span role="listitem">Fantasy Kingdom</span>
+          <span role="listitem">1920×1080</span>
+          <span role="listitem">RTX 4070 Laptop · D3D12</span>
+        </div>
+        <div class="tools"><span>Loupe 4×</span><span>Modes switched live</span></div>
+      </div>
+      <a class="ytfacade" href="https://youtu.be/vkdOkAmnA54" target="_blank" rel="noopener" data-yt="vkdOkAmnA54" aria-label="Play on YouTube: Colibri AA Comparison">
+        <img src="img/kingdom-poster.jpg" alt="Fantasy Kingdom under the loupe: the same frame with the anti-aliasing mode switching">
+        <span class="play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path class="bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+      </a>
+    </div>
+    <p class="foot">Edges, textures, motion — the same scene with the mode changing underneath the loupe: the flag and its rope, the merlons, the window bars. Fantasy Kingdom is a demo scene by Unity Technologies, used for comparison only.</p>
+
+    <div class="table-row">
+      <img src="img/fps.png" alt="Frame rate of ten anti-aliasing methods in Fantasy Kingdom at 2560×1440, on an RTX 4070 Laptop and an Apple M2 Pro">
+      <div>
+        <div class="head right">
+          <p class="eyebrow">Four modes</p>
+          <h2 class="display">Pick your mode.</h2>
+        </div>
+        <div class="modes">
+          <div class="row">
+            <p class="name">CF <span>Colibri Flash</span></p>
+            <p>One pass over the finished frame, with no history kept. Nothing trails behind movement, so it suits fast action and competitive games. Based on CMAA2. Reworked from the ground.</p>
+          </div>
+          <div class="row">
+            <p class="name">C2x <span>Flash over MSAA 2×</span></p>
+            <p>MSAA draws the thin geometry, Flash finishes the shaded edges. For scenes carried by fences, poles and cables.</p>
+          </div>
+          <div class="row">
+            <p class="name">CT2x <span>MSAA 2× + two frames</span></p>
+            <p>Two frames offset by a fraction of a pixel, then Flash. The steadiest on thin broken detail: wires against the sky, distant railings.</p>
+          </div>
+          <div class="row">
+            <p class="name">CT2x Ultra <span>Flash + two frames</span></p>
+            <p>The two-frame mode with Flash in place of MSAA. Close to the cost of Flash alone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="band" id="adapts">
+  <div class="wrap">
+    <div class="tune">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">It tunes itself</p>
+        <h2 class="display">To the project, the engine and the API.</h2>
+        <p class="lede">One switch in the renderer. Everything below is decided by reading what the project already is — colour range, post-processing, MSAA, engine version, API and graphics device. The same package gives the most optimized pass on every machine it lands on.</p>
+      </div>
+      <div class="rules" aria-label="How Colibri AA adapts">
+        <div class="rule"><span class="if">the camera is HDR and post-processing stays in display range</span><span class="arrow">→</span><span class="then">resolves after post-processing; otherwise before it</span></div>
+        <div class="rule"><span class="if">MSAA is 1×, 2× or 4×</span><span class="arrow">→</span><span class="then">picks the offset pattern: quarter, eighth-across, eighth</span></div>
+        <div class="rule"><span class="if">the device is on Direct3D 11</span><span class="arrow">→</span><span class="then">loads its own compute build; Direct3D 12, Vulkan and Metal get the main one</span></div>
+        <div class="rule"><span class="if">the driver has wave intrinsics</span><span class="arrow">→</span><span class="then">packs edge candidates through them; without them, through atomics</span></div>
+        <div class="rule"><span class="if">the GPU is Apple silicon</span><span class="arrow">→</span><span class="then">the pass runs in 16-bit; on Windows GPUs it stays 32-bit, which is faster there</span></div>
+        <div class="rule"><span class="if">the camera format cannot be written by compute</span><span class="arrow">→</span><span class="then">works through its own target instead of the camera one</span></div>
+        <div class="rule"><span class="if">the engine is Unity 6.4 or newer</span><span class="arrow">→</span><span class="then">writes straight into the camera target; older versions go through a copy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="proof">
+  <div class="wrap">
+    <div class="shots">
+      <div class="carousel" id="shots">
+        <div class="track" id="shots-track" tabindex="0" aria-label="Comparison shots">
+          <figure><img src="img/compare.png" alt="Nine anti-aliasing methods on the same Fantasy Kingdom crop, with matching-pixel percentages" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
+          <figure><img src="img/cost.png" alt="Cost per frame and added latency to the screen for each method at 3840×2160" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
+          <figure><img src="img/nextgen-1.png" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
+          <figure><img src="img/nextgen-3.png" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
+        </div>
+        <button type="button" class="nav prev" id="shots-prev" aria-label="Previous shot">‹</button>
+        <button type="button" class="nav next" id="shots-next" aria-label="Next shot">›</button>
+        <div class="dots" id="shots-dots" aria-hidden="true"></div>
+      </div>
+
+      <div class="side">
+        <div class="head">
+          <p class="eyebrow">Side by side</p>
+          <h2 class="display">The same frame, every method.</h2>
+        </div>
+        <p class="cap">Nine methods on one crop, the cost of each in milliseconds, and what the pass changes inside a frame. Every figure here comes from a run on our own stand.</p>
+      </div>
+    </div>
+
+    <dialog class="zoom" id="zoom">
+      <div class="bar">
+        <p id="zoom-cap"></p>
+        <button type="button" id="zoom-close">Close</button>
+      </div>
+      <div class="frame"><img id="zoom-img" src="" alt=""></div>
+      <button type="button" class="nav prev" id="zoom-prev" aria-label="Previous shot">‹</button>
+      <button type="button" class="nav next" id="zoom-next" aria-label="Next shot">›</button>
+    </dialog>
+  </div>
+</section>
+
+<section class="band" id="demo">
+  <div class="wrap">
+    <div class="demo">
+      <div class="stage">
+        <div class="stage-bar">
+          <div class="tabs" role="list">
+            <span role="listitem">Stress-test scene</span>
+            <span role="listitem">Grids, wires, glossy spheres</span>
+          </div>
+          <div class="tools"><span>Every mode live</span></div>
+        </div>
+        <a class="ytfacade" href="https://youtu.be/f-O645TiMJc" target="_blank" rel="noopener" data-yt="f-O645TiMJc" aria-label="Play on YouTube: Colibri AA Showcase">
+          <img src="img/demo.jpg" alt="The Colibri window in the editor above the stress-test scene with grids, wires and glossy spheres">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path class="bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+        </a>
+      </div>
+      <div class="text">
+        <p class="eyebrow">Inside the editor</p>
+        <h2 class="display">See the plugin at work.</h2>
+        <p class="lede">The Colibri window with its settings, our anti-aliasing stress stand, and every mode one after another — what each of them does to grids, thin wires and glossy highlights.</p>
+        <div class="dl">
+          <a class="btn" href="#demo" data-fill="download-windows"><span>Download for Windows</span><span>64-bit</span></a>
+          <a class="btn" href="#demo" data-fill="download-macos"><span>Download for macOS</span><span>Apple silicon</span></a>
+        </div>
+        <p class="note">Demo builds go live together with the Asset Store release.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="game inset" id="games">
+  <img src="img/glass-ark.jpg" alt="Engraving: three figures in goggles and heavy cloaks walking through a ruined Victorian street" loading="lazy">
+  <div class="wrap">
+    <p class="eyebrow">Games · In development</p>
+    <h2 class="display">The Glass Ark</h2>
+    <p class="lede">A saga of people under a sky that kills. Survive at the Station, go out in small groups into dead London of 1879, and follow one story from the last day of the old world.</p>
+  </div>
+</section>
+
+<section class="band" id="studio">
+  <div class="wrap">
+    <div class="studio">
+      <div class="who">
+        <div class="mark">
+          <img src="img/mark.jpg" alt="Make1ive Studio emblem: a Japanese house under a red sun, birds in flight">
+          <div>
+            <p class="eyebrow">The studio</p>
+            <h2 class="display">Make1ive Studio</h2>
+          </div>
+        </div>
+        <p class="lede">Independent, small on purpose. We build rendering tools for Unity that we need for our own game, then ship them so you never have to write them. Colibri AA is the first, The Glass Ark is the reason.</p>
+        <p class="note support">Support for Colibri AA goes to the same address. Put your Unity version and graphics API in the first line and you get an answer from whoever wrote that pass.</p>
+      </div>
+
+      <div class="reach">
+        <p class="eyebrow">Contact</p>
+        <div class="links">
+          <a href="mailto:" data-fill="studio-email">Write to the studio</a>
+          <a href="#studio" data-fill="asset-store-publisher">Unity Asset Store</a>
+          <a href="https://www.youtube.com/@make1iv3">YouTube</a>
+        </div>
+        <div class="five">
+          <p class="kanji glow" title="Sort, set in order, shine, standardise, sustain">整理　整頓　清掃　清潔　躾</p>
+          <p class="note">Seiri · seiton · seisou · seiketsu · shitsuke — sort, set in order, shine, standardise, sustain. Five words of the order we keep to.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand"><img src="img/mark.jpg" alt=""><span>Make1ive Studio</span></div>
+        <p>Rendering tools for Unity, built for our own game first. Measured on our own stand, on named hardware.</p>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Tools</p>
+        <a href="#colibri">Colibri AA for URP</a>
+        <a href="#adapts">Auto-tuning</a>
+        <a href="#proof">Benchmarks</a>
+        <a href="#demo">Demo builds</a>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Games and studio</p>
+        <a href="#games">The Glass Ark</a>
+        <a href="#studio">The studio</a>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Developer</p>
+        <a href="#top" id="open-docs-foot">Documentation</a>
+        <a href="#studio" data-fill="asset-store-publisher">Unity Asset Store</a>
+        <a href="mailto:" data-fill="studio-email">Write to the studio</a>
+      </div>
+    </div>
+    <div class="foot-line">
+      <p>© 2026 Make1ive Studio. All rights reserved.</p>
+      <p class="foot-legal">Unity and Universal Render Pipeline are trademarks of Unity Technologies. Fantasy Kingdom is a demo scene by Unity Technologies, shown in comparisons only and not included with Colibri AA. Colibri AA is built on Intel CMAA2 (Apache 2.0) and on the first URP port by Alexander Malyutin (MIT).</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="docs" id="docs">
+  <div class="bar">
+    <div class="tabs" role="tablist">
+      <button type="button" class="on" data-doc="readme" role="tab">Readme</button>
+      <button type="button" data-doc="guide" role="tab">Setup guide</button>
+    </div>
+    <div class="acts">
+      <button type="button" id="docs-save" aria-label="Download this document">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
+        </svg>
+        <span>Download</span>
+      </button>
+      <button type="button" id="docs-close">Close</button>
+    </div>
+  </div>
+  <div class="body" id="docs-body"></div>
+</dialog>
+
+<script>
+  window.__docs = {"readme": "# Colibri AA: anti-aliasing for Unity URP\n\nThree anti-aliasing modes in one renderer feature, one mode at a time:\n\n- **CF** (Colibri Flash): morphological anti-aliasing of the frame, without MSAA.\n- **C2x**: Colibri Flash on top of MSAA 2x, or MSAA 4x with **MSAA 4x** in Advanced.\n- **CT2x** (Colibri Temporal): two frames with a sub-pixel camera offset blended on top of MSAA 2x. It runs on the main camera of\n  the renderer; **Every Camera** in Advanced runs it on every camera of the renderer, each with its own history.\n\n## Requirements\n\n- Unity 6.0 or newer with the Universal Render Pipeline 17.0.4 or newer, rendering through the Render Graph.\n- Compute shaders: Metal, Direct3D 11, Direct3D 12 or Vulkan.\n\n## Tested on\n\nThree states, and they mean different things. **Measured** — run and timed by us. **Runs** — run and looked at, without numbers.\n**Not tested** — we have no such device, and the package makes no promise about it.\n\n| | state |\n|---|---|\n| **Graphics API** | Direct3D 12 — measured · Direct3D 11, Vulkan, Metal — runs |\n| **Unity** | 6000.0 · 6000.3 · 6000.6 · 6000.7 — runs; the numbers in the store listing come from 6000.7 |\n| **URP** | 17.0 through 17.7 — runs. The upscaler framework of 17.3 and newer is read through reflection; on 17.0 the older field is used instead |\n| **GPU** | NVIDIA RTX 4070 Laptop — measured · Apple M2 Pro — runs |\n| **Rendering paths** | Forward, Forward+, Deferred, Deferred+, 2D — run; Deferred has no MSAA in URP, see Limitations |\n| **Colour space** | Linear and Gamma — run |\n| **VR** | not supported yet |\n| **Not tested at all** | consoles · Nintendo Switch · WebGPU · WebGL · hardware dynamic resolution |\n\n## Installation\n\n1. Install the package. The **Colibri AA** tab opens next to the Inspector.\n2. Press **Turn on**. Colibri AA is added to every renderer of the project's URP Assets, and their MSAA is set for the mode.\n3. Choose the mode: **CF**, **C2x** or **CT2x**. The settings of the mode are under **Main** and **Advanced**; hover a setting for\n   what it does. **Reset to Defaults** under each mode puts only that mode back to the factory values.\n\nThe window is under **Window > Rendering > Colibri AA**. The Colibri AA entry in a renderer asset has a button that opens it too.\n\nMSAA follows the mode while Colibri AA is on. **Restore stock** puts the MSAA values back and removes the Colibri AA lines Turn on\nadded. If a renderer loses its line or the line is switched off, **Turn on** becomes available again and switches it back on.\n\nTurn on also sets plain Bilinear scaling in the URP Assets that use an upscaler with its own anti-aliasing or sharpening (STP,\nFSR, MetalFX, DLSS); Restore stock brings the upscaler back. While Colibri AA renders a camera, the camera's own anti-aliasing\n(FXAA, SMAA, TAA) is off for that frame; the camera component keeps its setting.\n\n## Anti-aliasing menu in your game\n\nMost games let the player pick anti-aliasing in the settings. Colibri AA takes one line per menu item:\n\n```csharp\nusing Make1iveStudio.Colibri;\n\nColibriAA.Use(ColibriChoice.CF);    // Colibri Flash\nColibriAA.Use(ColibriChoice.CT2x);  // MSAA 2x and two frames\nColibriAA.Use(ColibriChoice.Off);   // Colibri AA off, the camera's own anti-aliasing works\n```\n\nThe call does the three things a hand-written menu has to remember:\n\n- It sets **every** Colibri AA line in the project. A project with a URP Asset per quality level has a line in each, so a quality\n  change made later in the same menu keeps the choice.\n- It sets the **MSAA** the mode is built on: C2x and CT2x need MSAA 2x, CF and Ultra need none.\n- With **Off** the lines stay in the renderers and do nothing, and the camera's own FXAA, SMAA or TAA works as usual. Colibri AA\n  turns the camera's anti-aliasing off only for the frames it anti-aliases itself, and never changes the camera component.\n\nThe choices are **Off**, **CF**, **C2x**, **CT2x** and **Ultra**. Ultra is CT2x with Colibri Flash in place of MSAA: it brings the\ntwo-frame blend to a project or a camera that renders without MSAA.\n\n### Each menu item in code\n\n| Menu item | Code |\n|---|---|\n| Off | `ColibriAA.Use(ColibriChoice.Off);` and the camera's anti-aliasing set to None |\n| FXAA, SMAA, TAA | `ColibriAA.Use(ColibriChoice.Off);` and the camera set to that anti-aliasing |\n| MSAA 4x | `ColibriAA.Use(ColibriChoice.Off, msaaWhenOff: 4);` |\n| CF, C2x, CT2x, Ultra | `ColibriAA.Use(ColibriChoice.CF);` and so on; nothing to set on the camera |\n\n**Off sets MSAA to 1x** unless you pass another count, because FXAA, SMAA and TAA run without MSAA.\n\n### A complete menu\n\nPut this script on any object, give it the main camera, fill a dropdown with the `Items` below in the same order, and hook `Pick`\nto the dropdown's **On Value Changed**.\n\n```csharp\nusing Make1iveStudio.Colibri;\nusing UnityEngine;\nusing UnityEngine.Rendering.Universal;\n\npublic class AntiAliasingMenu : MonoBehaviour\n{\n    public Camera mainCamera;\n\n    public static readonly string[] Items = { \"Off\", \"FXAA\", \"SMAA\", \"TAA\", \"MSAA 4x\", \"CF\", \"CT2x\" };\n\n    public void Pick(int item)\n    {\n        var camera = mainCamera.GetUniversalAdditionalCameraData();\n        camera.antialiasing = AntialiasingMode.None;\n        switch (Items[item])\n        {\n            case \"Off\":     ColibriAA.Use(ColibriChoice.Off); break;\n            case \"FXAA\":    ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.FastApproximateAntialiasing; break;\n            case \"SMAA\":    ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing; break;\n            case \"TAA\":     ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.TemporalAntiAliasing; break;\n            case \"MSAA 4x\": ColibriAA.Use(ColibriChoice.Off, msaaWhenOff: 4); break;\n            case \"CF\":      ColibriAA.Use(ColibriChoice.CF); break;\n            case \"CT2x\":    ColibriAA.Use(ColibriChoice.CT2x); break;\n        }\n    }\n}\n```\n\n### Good to know\n\n- **`ColibriAA.Current`** tells which choice is on, to show it as selected when the menu opens.\n- **Until the first call** the lines run as **Turn on** left them, in the mode chosen in the window.\n- **In Play Mode in the editor** whatever `Use` changes is put back when Play Mode ends, so trying the menu leaves the project as it\n  was. Called outside Play Mode, from an editor script, the change stays.\n- **C2x and CT2x need a camera with Allow MSAA on.** If your camera has it off, offer CF and Ultra: they need no MSAA.\n\n## Removing the package\n\nPress **Restore stock** before you remove the package. Otherwise the renderers keep an entry whose script is gone, the URP Assets keep\nthe MSAA and scaling of the mode, and materials with the **Colibri AA/Lit** shader have no shader to render with.\n\n## Anti-Shimmer\n\nSmall highlights on curved and bumpy surfaces flicker in motion. **Anti-Shimmer** (Main of C2x and CT2x) spreads such highlights\nslightly before they can flicker. The filter works inside the surface shader, before lighting:\n\n- **Materials:** select the **Colibri AA/Lit** shader. It is the URP Lit shader with the filter inside, built by the package from the\n  Lit shader of the installed URP, so it keeps every Lit setting and follows URP updates.\n- **Hand-written shader:** in the lit passes, `#pragma multi_compile_fragment _ COLIBRI_SPECULAR_AA` and\n  `#include \"Packages/com.make1ivestudio.colibri/ShaderLibrary/ColibriSpecularAA.hlsl\"`, then in the fragment stage, before\n  lighting: `smoothness = ColibriSpecularAA(smoothness, geometricNormalWS);`\n- **Shader Graph:** a Boolean Keyword `COLIBRI_SPECULAR_AA` (Multi Compile, Global) and a Custom Function node with\n  `ColibriSpecularAA.hlsl` as the source and `ColibriSpecularAA` as the name; inputs Smoothness (Float) and NormalWS (Vector 3,\n  world-space normal), output Out into Smoothness.\n\nColibri AA enables the filter only for the cameras it renders while Anti-Shimmer is on. Otherwise the shaders are compiled without it,\nand it costs nothing.\n\n## Upscalers\n\n**Turn on** puts the URP Assets that use an upscaler with its own anti-aliasing or sharpening (STP, FSR, MetalFX, DLSS) back to plain\nBilinear scaling, and **Restore stock** brings the upscaler back.\n\nIf the game lets the player pick an upscaler at runtime, Colibri AA steps aside by itself: on a camera anti-aliased by a temporal\nupscaler — STP, DLSS, FSR 2 and 3, MetalFX — the line does nothing and says so once in the console. Switch Colibri AA off while such\nan upscaler is on, and give the player's choice back when the upscaler is turned off:\n\n```csharp\nColibriAA.Use(upscalerOn ? ColibriChoice.Off : playerChoice);\n```\n\nFSR 1.0 does not anti-alias the frame: Colibri AA keeps working with it.\n\n## Limitations\n\n- **CT2x without Anti-Ghosting** takes motion from the camera and depth only, which costs less; fast moving objects can leave a\n  trail. **Anti-Ghosting** gives them their own motion vectors and removes the trail at the cost of drawing them once more. Do\n  not turn it on just in case: the trail is often invisible to the eye, and we had to build dedicated scenes just to see it.\n- **The camera renders into an intermediate texture** while Colibri AA works on it. In a project where URP would otherwise draw\n  straight to the screen — post-processing, HDR, MSAA, the depth texture and the opaque texture all off — this adds that texture and a\n  copy to the screen on top of the anti-aliasing itself. Measured on the RTX 4070 Laptop with Direct3D 12 at 2560×1440, the addition\n  could not be told apart from the measurement noise of about 0.01 ms per frame.\n- **A frame without HDR is an 8-bit sRGB texture in the Linear colour space,** and on Direct3D 12, Direct3D 11 and Vulkan a compute\n  shader cannot write it. Colibri Flash then works in a texture of its own and copies the frame in first: 0.05 ms per frame at\n  2560×1440 on the same machine. Metal writes such a frame directly.\n- **Deferred and Deferred+ rendering paths** have no MSAA in URP: C2x runs as CF, and CT2x blends two frames without MSAA.\n- **MSAA is often off in a URP project by its author's choice, and then C2x and CT2x run without it.** A camera with Allow MSAA\n  off gets no multisampling whatever the URP Asset holds. Projects built around screen-space effects — ambient occlusion, fog,\n  decals — commonly ship that way, because those effects read the depth texture and with MSAA the pipeline has to produce it by\n  a pass of its own. Unity's own Fantasy Kingdom sample is one: every quality level ships MSAA 1 and the camera has Allow MSAA\n  off. **CF and Ultra Performance need no MSAA and run in any of these projects;** for C2x and CT2x the camera has to allow it.\n  The window says so when it happens.\n- **The 2D renderer** draws straight to the screen unless something asks it for an intermediate texture, so the line asks for one while\n  it works. CF and C2x anti-alias sprites there. CT2x blends two frames without motion vectors, which the 2D renderer never draws:\n  moving sprites leave a trail, and with **Anti-Ghosting** on CT2x does not run at all there and says so once in the console.\n- **Pixel Perfect Camera:** a camera with that component is left alone, since the staircase of pixel art is meant to be seen. The\n  **Pixel Perfect Camera** setting, shown for a 2D renderer, anti-aliases it anyway.\n- **Overlay cameras** of a camera stack are not anti-aliased by Colibri Flash: they draw on top of the frame their base camera has\n  already anti-aliased. Material previews and reflection probes are not anti-aliased either.\n- **Colibri Flash builds its edge lists with atomic operations of compute shaders.** Where the device has no wave intrinsics, Colibri AA\n  checks once at startup that these operations work; if they do nothing, Colibri Flash turns itself off with one warning instead of\n  leaving a black frame, and CT2x on MSAA keeps working.\n- **XR and stereo rendering** are not supported: XR cameras are rendered without Colibri AA.\n- **Render Graph compatibility mode** of Unity 6.0 to 6.3 is not supported: Colibri AA stays off there and logs one warning.\n- **On a URP version whose internals have moved**, Colibri AA falls back rather than fails: it copies the frame where it would\n  otherwise write into the camera colour directly, and builds its copy of the Lit shader without Anti-Shimmer if URP no longer\n  calls the function the filter replaces. Both leave a message in the console, and Debug Mode names the path that was taken. The\n  frame is correct in either case; the fallback costs one full-frame copy.\n\n## Debug Mode\n\nTurn on **Debug Mode** at the bottom of the settings when something looks wrong, and reproduce the problem. Colibri AA rewrites a\nreport every two seconds while a camera renders with it: the device, the URP Asset and renderers, the Colibri AA settings, every\ncamera and what Colibri AA did for it, the pass counters, automatic checks, and the errors logged meanwhile. **Show Report** opens\nits folder: `Logs/ColibriAA/ColibriAA-Report.txt` in the project, or `ColibriAA-Report.txt` in `Application.persistentDataPath`\nin a player. Send the file with your problem report. Debug Mode changes nothing in the image; turn it off before shipping.\n\n## License\n\nColibri AA is licensed under the [Unity Asset Store EULA](https://unity.com/legal/as-terms), see [`LICENSE`](LICENSE). It includes\nthird-party code under its own licenses, in [`THIRD_PARTY_LICENSES`](THIRD_PARTY_LICENSES): a modified version of Intel's\n[CMAA2](https://github.com/GameTechDev/CMAA2) under the Apache License 2.0, code derived from Alexander Malyutin's Unity URP port of\nCMAA2 under the MIT License, and color packing code from Microsoft MiniEngine under the MIT License.\n", "guide": "Colibri AA — setup in four steps\n\n1. Import the package into a Unity 6 project that uses the Universal Render Pipeline.\n2. Open Window ▸ Colibri AA and press Turn on. The window adds the render feature to every\n   URP renderer in the project, sets the MSAA level the chosen mode needs, and keeps a backup\n   of what it changed.\n3. Pick a mode: CF, C2x, CT2x or CT2x Ultra. Everything else stays on Auto — the pass reads\n   the colour range, post-processing, MSAA, engine version and graphics API by itself.\n4. From game code, switch modes with one call:\n\n       Make1ive.Colibri.ColibriAA.Use(ColibriChoice.CF);\n\nRestore stock puts the project back exactly as it was: the feature rows are removed and the\nMSAA levels return to the saved values.\n\nSupport: write to the studio at [make1ive.com/colibri-aa](https://make1ive.com/colibri-aa) with your Unity version and\ngraphics API in the first line.\n"};
+  (function () {
+    var track = document.getElementById("shots-track");
+    if (!track) return;
+    var dots = document.getElementById("shots-dots");
+    var prev = document.getElementById("shots-prev");
+    var next = document.getElementById("shots-next");
+    var shots = Array.prototype.slice.call(track.querySelectorAll("img"));
+    shots.forEach(function () { dots.appendChild(document.createElement("i")); });
+
+    function step() { return track.clientWidth; }
+    function current() { return Math.max(0, Math.min(shots.length - 1, Math.round(track.scrollLeft / step()))); }
+    function paint() {
+      var i = current();
+      Array.prototype.forEach.call(dots.children, function (d, k) { d.className = k === i ? "on" : ""; });
+      prev.disabled = track.scrollLeft < 8;
+      next.disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 8;
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+    track.addEventListener("scroll", paint, { passive: true });
+    window.addEventListener("resize", paint);
+
+    var zoom = document.getElementById("zoom");
+    var zoomImg = document.getElementById("zoom-img");
+    var zoomCap = document.getElementById("zoom-cap");
+    var zoomPrev = document.getElementById("zoom-prev");
+    var zoomNext = document.getElementById("zoom-next");
+    var at = 0;
+
+    function show(i) {
+      at = Math.max(0, Math.min(shots.length - 1, i));
+      zoomImg.src = shots[at].src;
+      zoomImg.alt = shots[at].alt;
+      zoomCap.textContent = shots[at].dataset.cap;
+      zoomPrev.disabled = at === 0;
+      zoomNext.disabled = at === shots.length - 1;
+    }
+    shots.forEach(function (img, i) {
+      img.addEventListener("click", function () {
+        show(i);
+        if (zoom.showModal) zoom.showModal();
+      });
+    });
+    // the frame table opens in the same dialog, only without paging
+    var single = document.querySelector(".table-row img");
+    if (single) {
+      single.style.cursor = "zoom-in";
+      single.addEventListener("click", function () {
+        zoomImg.src = single.src;
+        zoomImg.alt = single.alt;
+        zoomCap.textContent = "Frame rate in a full game scene: ten methods, two machines, Fantasy Kingdom at 2560×1440.";
+        zoomPrev.hidden = true; zoomNext.hidden = true;
+        if (zoom.showModal) zoom.showModal();
+      });
+    }
+    var showWithArrows = show;
+    show = function (i) { zoomPrev.hidden = false; zoomNext.hidden = false; showWithArrows(i); };
+    shots.forEach(function (img, i) {
+      img.addEventListener("click", function () { zoomPrev.hidden = false; zoomNext.hidden = false; });
+    });
+
+    zoomPrev.addEventListener("click", function () { show(at - 1); });
+    zoomNext.addEventListener("click", function () { show(at + 1); });
+    document.getElementById("zoom-close").addEventListener("click", function () { zoom.close(); });
+    zoomImg.addEventListener("click", function () { zoom.close(); });
+    zoom.addEventListener("click", function (e) { if (e.target === zoom || e.target.className === "frame") zoom.close(); });
+    zoom.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); show(at + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); show(at - 1); }
+    });
+    zoom.addEventListener("close", function () { track.scrollTo({ left: at * step(), behavior: "auto" }); });
+
+    paint();
+  })();
+</script>
+
+<script>
+  (function () {
+    var dlg = document.getElementById("docs");
+    if (!dlg) return;
+    var body = document.getElementById("docs-body");
+    var tabs = dlg.querySelectorAll(".tabs button");
+    // README написан разметкой Markdown. Прежде окно клало его в <pre> как есть, и таблицы, жирный и заголовки
+    // читались знаками разметки — слово Максима 21.09.2026: «так должно быть или у тебя тут сломались форматы».
+    // Разбор свой и маленький: страница открывается и без сети, а текст наш, чужого в него не попадает.
+    function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+    function inline(t) {
+      var codes = [];
+      t = esc(t).replace(/`([^`]+)`/g, function (m, c) { codes.push(c); return "\u0000" + (codes.length - 1) + "\u0000"; });
+      t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+           .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, label, href) {
+             return /^https?:/.test(href) ? '<a href="' + href + '" target="_blank" rel="noopener">' + label + "</a>" : label;
+           });
+      return t.replace(/\u0000(\d+)\u0000/g, function (m, i) { return "<code>" + codes[+i] + "</code>"; });
+    }
+    function render(md) {
+      var lines = md.replace(/\r/g, "").split("\n"), out = [], i = 0;
+      while (i < lines.length) {
+        var l = lines[i];
+        if (/^```/.test(l)) {
+          var code = []; i++;
+          while (i < lines.length && !/^```/.test(lines[i])) code.push(lines[i++]);
+          i++; out.push("<pre><code>" + esc(code.join("\n")) + "</code></pre>"); continue;
+        }
+        var h = /^(#{1,3})\s+(.*)$/.exec(l);
+        if (h) { out.push("<h" + (h[1].length + 1) + ">" + inline(h[2]) + "</h" + (h[1].length + 1) + ">"); i++; continue; }
+        if (/^\|/.test(l) && i + 1 < lines.length && /^\|[\s:|-]+\|$/.test(lines[i + 1])) {
+          var cells = function (row) { return row.replace(/^\||\|$/g, "").split("|").map(function (c) { return inline(c.trim()); }); };
+          var head = cells(l), rows = []; i += 2;
+          while (i < lines.length && /^\|/.test(lines[i])) rows.push(cells(lines[i++]));
+          out.push("<table><thead><tr>" + head.map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr></thead><tbody>" +
+                   rows.map(function (r) { return "<tr>" + r.map(function (c) { return "<td>" + c + "</td>"; }).join("") + "</tr>"; }).join("") +
+                   "</tbody></table>");
+          continue;
+        }
+        if (/^\s*([-*]|\d+\.)\s+/.test(l)) {
+          var ordered = /^\s*\d+\./.test(l), items = [];
+          while (i < lines.length && lines[i].trim() !== "" && !/^(#|```|\|)/.test(lines[i])) {
+            if (/^\s*([-*]|\d+\.)\s+/.test(lines[i])) items.push(lines[i].replace(/^\s*([-*]|\d+\.)\s+/, ""));
+            else items[items.length - 1] += " " + lines[i].trim();     // продолжение пункта на следующей строке
+            i++;
+          }
+          var tag = ordered ? "ol" : "ul";
+          out.push("<" + tag + ">" + items.map(function (x) { return "<li>" + inline(x) + "</li>"; }).join("") + "</" + tag + ">");
+          continue;
+        }
+        if (/^ {4}\S/.test(l)) {                                         // строка с отступом — фрагмент кода
+          var block = [];
+          while (i < lines.length && /^ {4}/.test(lines[i])) block.push(lines[i++].slice(4));
+          out.push("<pre><code>" + esc(block.join("\n")) + "</code></pre>"); continue;
+        }
+        if (l.trim() === "") { i++; continue; }
+        var para = [];
+        while (i < lines.length && lines[i].trim() !== "" && !/^(#|```|\||\s*([-*]|\d+\.)\s)/.test(lines[i])) para.push(lines[i++].trim());
+        out.push("<p>" + inline(para.join(" ")) + "</p>");
+      }
+      return out.join("\n");
+    }
+    function fill(which) {
+      body.innerHTML = '<div class="md">' + render((window.__docs || {})[which] || "") + "</div>";
+      body.scrollTop = 0;
+      tabs.forEach(function (t) { t.className = t.dataset.doc === which ? "on" : ""; });
+      current = which;
+    }
+    tabs.forEach(function (t) { t.addEventListener("click", function () { fill(t.dataset.doc); }); });
+    function open(e) { if (e) e.preventDefault(); fill("readme"); if (dlg.showModal) dlg.showModal(); }
+    ["open-docs", "open-docs-foot"].forEach(function (id) {
+      var b = document.getElementById(id);
+      if (b) b.addEventListener("click", open);
+    });
+    var current = "readme";
+    var names = { readme: "colibri-aa-readme.md", guide: "colibri-aa-setup.md" };
+    document.getElementById("docs-save").addEventListener("click", function () {
+      var text = (window.__docs || {})[current] || "";
+      var url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+      var a = document.createElement("a");
+      a.href = url; a.download = names[current];
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    });
+    document.getElementById("docs-close").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  })();
+
+  (function () {
+    var canvas = document.getElementById("motes");
+    if (!canvas) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var hero = canvas.parentElement;
+    var ctx = canvas.getContext("2d", { alpha: true });
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0, motes = [], sprite = null, running = false, raf = 0;
+
+    function makeSprite(color) {
+      var s = document.createElement("canvas");
+      var r = 24;
+      s.width = s.height = r * 2;
+      var c = s.getContext("2d");
+      var g = c.createRadialGradient(r, r, 0, r, r, r);
+      g.addColorStop(0, color);
+      g.addColorStop(0.32, color.replace("rgb", "rgba").replace(")", ", .6)"));
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      c.fillStyle = g;
+      c.beginPath(); c.arc(r, r, r, 0, Math.PI * 2); c.fill();
+      return s;
+    }
+
+    function size() {
+      var r = hero.getBoundingClientRect();
+      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function seed() {
+      var n = Math.round(Math.min(46, Math.max(22, w / 34)));
+      motes = [];
+      for (var i = 0; i < n; i++) {
+        motes.push({
+          x: Math.random() * w, y: Math.random() * h,
+          r: Math.random() * 9 + 4,
+          vx: (Math.random() - 0.35) * 0.16,
+          vy: -(Math.random() * 0.12 + 0.04),
+          a: Math.random() * 0.45 + 0.2,
+          da: (Math.random() * 0.004 + 0.002) * (Math.random() > 0.5 ? 1 : -1)
+        });
+      }
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = "lighter";
+      for (var i = 0; i < motes.length; i++) {
+        var m = motes[i];
+        m.x += m.vx; m.y += m.vy; m.a += m.da;
+        if (m.a <= 0.1 || m.a >= 0.68) m.da *= -1;
+        if (m.y + m.r < 0) { m.y = h + m.r; m.x = Math.random() * w; }
+        if (m.x < -m.r) m.x = w + m.r;
+        if (m.x > w + m.r) m.x = -m.r;
+        ctx.globalAlpha = m.a;
+        ctx.drawImage(sprite, m.x - m.r, m.y - m.r, m.r * 2, m.r * 2);
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = "source-over";
+      raf = requestAnimationFrame(frame);
+    }
+
+    function start() { if (!running) { running = true; raf = requestAnimationFrame(frame); } }
+    function stop() { running = false; cancelAnimationFrame(raf); }
+
+    sprite = makeSprite("rgb(127, 233, 255)");
+    size(); seed(); start();
+
+    var resizeTimer = 0;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { size(); seed(); }, 180);
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0 }).observe(hero);
+    }
+  })();
+</script>
+
+<script>
+  // Ролик лежит на YouTube, а не в странице: кадр с кнопкой заменяется плеером только по клику,
+  // поэтому страница не тянет чужие скрипты, пока зритель сам не попросил.
+  // YouTube встраивает плеер только странице, которая назвала себя заголовком Referer, иначе — ошибка 153.
+  // Файл, открытый с диска, назвать себя не может: там ролик открывается на самом YouTube, новой вкладкой.
+  document.querySelectorAll(".ytfacade[data-yt]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (location.protocol === "file:") return;
+      e.preventDefault();
+      var f = document.createElement("iframe");
+      f.className = "ytframe";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.src = "https://www.youtube-nocookie.com/embed/" + a.dataset.yt + "?autoplay=1&rel=0";
+      f.title = a.querySelector("img").alt;
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      a.replaceWith(f);
+    });
+  });
+</script>
+</head>
+<body>
+
+</body>
+</html>
