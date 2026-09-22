@@ -1,0 +1,25 @@
+# Colibri AA
+
+> Anti-aliasing for Unity 6 URP in one renderer feature, by Make1ive Studio. Three modes: CF (Colibri Flash, morphological anti-aliasing of the finished frame, no MSAA), C2x (Colibri Flash over MSAA 2x) and CT2x (two frames with a sub-pixel camera offset on top of MSAA 2x; CT2x Ultra runs the two frames with Colibri Flash in place of MSAA).
+
+- Requirements: Unity 6.0 or newer, Universal Render Pipeline 17.0.4 or newer through the Render Graph, compute shaders on Direct3D 11, Direct3D 12, Vulkan or Metal.
+- Setup: the Turn on button adds Colibri AA to every renderer of the project and sets MSAA for the mode; Restore stock puts the project back.
+- Game settings menu: one call per menu item, `ColibriAA.Use(ColibriChoice.CF)`; `ColibriAA.Available(choice, camera)` tells whether a mode works as its name says on that camera.
+- Camera cuts: set `resetHistory` on the camera for the first frame of a new shot, the same flag URP's own TAA reads.
+- Frame rate in Fantasy Kingdom at 2560×1440, RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps.
+
+## Docs
+
+- [Documentation](https://make1ive.com/colibri-aa/docs/): installation, the game menu API, camera cuts, Anti-Shimmer, upscalers, limitations
+- [Product page](https://make1ive.com/colibri-aa/): the modes, benchmarks and side-by-side comparisons
+
+## Demo
+
+- [Demo for Windows](https://github.com/Make1ive/make1ive.github.io/releases/latest/download/ColibriAADemo-Windows.zip): 64-bit Windows 10 or 11, DirectX 12
+- [Demo for macOS](https://github.com/Make1ive/make1ive.github.io/releases/latest/download/ColibriAADemo-macOS.zip): Apple silicon, macOS 12 or later
+- [Colibri AA Showcase](https://youtu.be/f-O645TiMJc): the settings window, the stress scene and every mode
+- [Colibri AA Comparison](https://youtu.be/vkdOkAmnA54): SMAA, MSAA, TAA and Colibri AA on the same frame under a 4× loupe
+
+## Optional
+
+- [Contact](mailto:support@make1ive.com): support for Colibri AA; put the Unity version and graphics API in the first line

@@ -73,7 +73,7 @@
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Make1ive Studio, home">
-      <img src="../img/mark.jpg" alt="">
+      <img src="../img/mark.jpg" width="352" height="352" alt="">
       <span>Make1ive Studio</span>
     </a>
     <nav aria-label="Sections">
@@ -89,7 +89,7 @@
 </header>
 
 <section class="hero" id="top" aria-label="Make1ive Studio">
-  <img src="../img/hero.webp" alt="A hummingbird in flight, iridescent blue and green plumage lit against a dark ground" fetchpriority="high">
+  <img src="../img/hero.webp" width="2200" height="1466" alt="A hummingbird in flight, iridescent blue and green plumage lit against a dark ground" fetchpriority="high">
   <canvas class="motes" id="motes" aria-hidden="true"></canvas>
   <div class="wrap">
     <h1 class="eyebrow">Colibri AA · Anti-aliasing for Unity URP</h1>
@@ -120,14 +120,14 @@
         <div class="tools"><span>Loupe 4×</span><span>Modes switched live</span></div>
       </div>
       <a class="ytfacade" href="https://youtu.be/vkdOkAmnA54" target="_blank" rel="noopener" data-yt="vkdOkAmnA54" aria-label="Play on YouTube: Colibri AA Comparison">
-        <img src="../img/kingdom-poster.webp" alt="Fantasy Kingdom under the loupe: the same frame with the anti-aliasing mode switching">
+        <img src="../img/kingdom-poster.webp" width="1920" height="1080" alt="Fantasy Kingdom under the loupe: the same frame with the anti-aliasing mode switching">
         <span class="play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path class="bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
       </a>
     </div>
     <p class="foot">Edges, textures, motion — the same scene with the mode changing underneath the loupe: the flag and its rope, the merlons, the window bars. Fantasy Kingdom is a demo scene by Unity Technologies, used for comparison only.</p>
 
     <div class="table-row">
-      <img src="../img/fps.webp" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440. RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps">
+      <img src="../img/fps.webp" width="2400" height="1600" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440. RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps">
       <div>
         <div class="head right">
           <p class="eyebrow">Four anti-aliasing modes</p>
@@ -136,7 +136,7 @@
         <div class="modes">
           <div class="row">
             <p class="name">CF <span>Colibri Flash</span></p>
-            <p>One pass over the finished frame, with no history kept. Nothing trails behind movement, so it suits fast action and competitive games. Based on CMAA2. Reworked from the ground.</p>
+            <p>One pass over the finished frame, with no history kept. Nothing trails behind movement, so it suits fast action and competitive games. Based on CMAA2. Reworked from the ground up.</p>
           </div>
           <div class="row">
             <p class="name">C2x <span>Flash over MSAA 2×</span></p>
@@ -144,7 +144,7 @@
           </div>
           <div class="row">
             <p class="name">CT2x <span>MSAA 2× + two frames</span></p>
-            <p>Two frames offset by a fraction of a pixel, then Flash. The steadiest on thin broken detail: wires against the sky, distant railings.</p>
+            <p>Two frames offset by a fraction of a pixel, on top of MSAA 2×. The steadiest on thin broken detail: wires against the sky, distant railings.</p>
           </div>
           <div class="row">
             <p class="name">CT2x Ultra <span>Flash + two frames</span></p>
@@ -183,10 +183,10 @@
     <div class="shots">
       <div class="carousel" id="shots">
         <div class="track" id="shots-track" tabindex="0" aria-label="Comparison shots">
-          <figure><img src="../img/compare.webp" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
-          <figure><img src="../img/cost.webp" alt="GPU cost per frame and added latency at 4K in Unity URP, RTX 4070 Laptop, Direct3D 12. GPU time added per frame: CF 0.30 ms, SMAA 0.61 ms, CT2x 0.86 ms, C2x 0.95 ms, TAA 1.44 ms, MSAA + SMAA 1.55 ms, MetalFX about 3.52 ms, FSR 3.1 5.16 ms. Latency added: CF 0.88 ms, SMAA 1.89 ms, CT2x 2.62 ms, C2x 2.82 ms, TAA 4.33 ms, MSAA + SMAA 4.72 ms, FSR 3.1 15.41 ms. Fine texture detail kept against no anti-aliasing: CF 98 percent, C2x 98 percent, SMAA 97 percent, CT2x 96 percent, MSAA + SMAA 96 percent, MetalFX 91 percent, TAA 76 percent" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
-          <figure><img src="../img/nextgen-1.webp" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
-          <figure><img src="../img/nextgen-3.webp" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
+          <figure><img src="../img/compare.webp" width="2400" height="1600" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
+          <figure><img src="../img/cost.webp" width="2400" height="1600" alt="GPU cost per frame and added latency at 4K in Unity URP, RTX 4070 Laptop, Direct3D 12. GPU time added per frame: CF 0.30 ms, SMAA 0.61 ms, CT2x 0.86 ms, C2x 0.95 ms, TAA 1.44 ms, MSAA + SMAA 1.55 ms, MetalFX about 3.52 ms, FSR 3.1 5.16 ms. Latency added: CF 0.88 ms, SMAA 1.89 ms, CT2x 2.62 ms, C2x 2.82 ms, TAA 4.33 ms, MSAA + SMAA 4.72 ms, FSR 3.1 15.41 ms. Fine texture detail kept against no anti-aliasing: CF 98 percent, C2x 98 percent, SMAA 97 percent, CT2x 96 percent, MSAA + SMAA 96 percent, MetalFX 91 percent, TAA 76 percent" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
+          <figure><img src="../img/nextgen-1.webp" width="2400" height="1600" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
+          <figure><img src="../img/nextgen-3.webp" width="2400" height="1600" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
         </div>
         <button type="button" class="nav prev" id="shots-prev" aria-label="Previous shot">‹</button>
         <button type="button" class="nav next" id="shots-next" aria-label="Next shot">›</button>
@@ -198,7 +198,7 @@
           <p class="eyebrow">Side by side</p>
           <h2 class="display">The same frame, every method.</h2>
         </div>
-        <p class="cap">Nine methods on one crop — No AA, the three Colibri AA modes, SMAA, MSAA 4× + SMAA, TAA, FSR 3.1 and MetalFX — the cost of each in milliseconds, and what the pass changes inside a frame. Every figure here comes from a run on our own stand.</p>
+        <p class="cap">Nine methods on one crop — No AA, three of the Colibri AA modes, SMAA, MSAA 4× + SMAA, TAA, FSR 3.1 and MetalFX — the cost of each in milliseconds, and what the pass changes inside a frame. Every figure here comes from a run on our own stand.</p>
       </div>
     </div>
 
@@ -226,7 +226,7 @@
           <div class="tools"><span>Every mode live</span></div>
         </div>
         <a class="ytfacade" href="https://youtu.be/f-O645TiMJc" target="_blank" rel="noopener" data-yt="f-O645TiMJc" aria-label="Play on YouTube: Colibri AA Showcase">
-          <img src="../img/demo.jpg" alt="The Colibri window in the editor above the stress-test scene with grids, wires and glossy spheres">
+          <img src="../img/demo.jpg" width="1600" height="900" alt="The Colibri window in the editor above the stress-test scene with grids, wires and glossy spheres">
           <span class="play" aria-hidden="true"><svg viewBox="0 0 68 48" width="68" height="48"><path class="bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
         </a>
       </div>
@@ -235,17 +235,18 @@
         <h2 class="display">See Colibri AA at work.</h2>
         <p class="lede">The Colibri window with its settings, our anti-aliasing stress stand, and every mode one after another — what each of them does to grids, thin wires and glossy highlights.</p>
         <div class="dl">
-          <a class="btn" href="#demo" data-fill="download-windows"><span>Download for Windows</span><span>64-bit</span></a>
-          <a class="btn" href="#demo" data-fill="download-macos"><span>Download for macOS</span><span>Apple silicon</span></a>
+          <a class="btn" href="https://github.com/Make1ive/make1ive.github.io/releases/latest/download/ColibriAADemo-Windows.zip"><span>Download for Windows</span><span>64-bit</span></a>
+          <p class="note">Unzip the whole folder and run ColibriAADemo.exe. The build is not code-signed yet: if SmartScreen stops it, click More info, then Run anyway.</p>
+          <a class="btn" href="https://github.com/Make1ive/make1ive.github.io/releases/latest/download/ColibriAADemo-macOS.zip"><span>Download for macOS</span><span>Apple silicon</span></a>
+          <p class="note">Unzip and open Colibri AA Demo. The build is not notarized yet, so macOS blocks the first launch: open System Settings › Privacy &amp; Security and click Open Anyway.</p>
         </div>
-        <p class="note">Demo builds go live together with the Asset Store release.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="game inset" id="games">
-  <img src="../img/glass-ark.webp" alt="Engraving: three figures in goggles and heavy cloaks walking through a ruined Victorian street">
+  <img src="../img/glass-ark.webp" width="1600" height="1066" alt="Engraving: three figures in goggles and heavy cloaks walking through a ruined Victorian street">
   <div class="wrap">
     <p class="eyebrow">Games · In development</p>
     <h2 class="display">The Glass Ark</h2>
@@ -258,7 +259,7 @@
     <div class="studio">
       <div class="who">
         <div class="mark">
-          <img src="../img/mark.jpg" alt="Make1ive Studio emblem: a Japanese house under a red sun, birds in flight">
+          <img src="../img/mark.jpg" width="352" height="352" alt="Make1ive Studio emblem: a Japanese house under a red sun, birds in flight">
           <div>
             <p class="eyebrow">The studio</p>
             <h2 class="display">Make1ive Studio</h2>
@@ -289,7 +290,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <div class="brand"><img src="../img/mark.jpg" alt=""><span>Make1ive Studio</span></div>
+        <div class="brand"><img src="../img/mark.jpg" width="352" height="352" alt=""><span>Make1ive Studio</span></div>
         <p>Rendering tools for Unity, built for our own game first. Measured on our own stand, on named hardware.</p>
       </div>
       <div class="foot-col">
