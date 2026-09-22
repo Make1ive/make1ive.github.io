@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://make1ive.com/sitemap.xml
