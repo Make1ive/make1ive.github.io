@@ -127,7 +127,7 @@
     <p class="foot">Edges, textures, motion — the same scene with the mode changing underneath the loupe: the flag and its rope, the merlons, the window bars. Fantasy Kingdom is a demo scene by Unity Technologies, used for comparison only.</p>
 
     <div class="table-row">
-      <img src="../img/fps.png" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440. RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps">
+      <img src="../img/fps.webp" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440. RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps">
       <div>
         <div class="head right">
           <p class="eyebrow">Four anti-aliasing modes</p>
@@ -183,10 +183,10 @@
     <div class="shots">
       <div class="carousel" id="shots">
         <div class="track" id="shots-track" tabindex="0" aria-label="Comparison shots">
-          <figure><img src="../img/compare.png" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
-          <figure><img src="../img/cost.png" alt="GPU cost per frame and added latency at 4K in Unity URP, RTX 4070 Laptop, Direct3D 12. GPU time added per frame: CF 0.30 ms, SMAA 0.61 ms, CT2x 0.86 ms, C2x 0.95 ms, TAA 1.44 ms, MSAA + SMAA 1.55 ms, MetalFX about 3.52 ms, FSR 3.1 5.16 ms. Latency added: CF 0.88 ms, SMAA 1.89 ms, CT2x 2.62 ms, C2x 2.82 ms, TAA 4.33 ms, MSAA + SMAA 4.72 ms, FSR 3.1 15.41 ms. Fine texture detail kept against no anti-aliasing: CF 98 percent, C2x 98 percent, SMAA 97 percent, CT2x 96 percent, MSAA + SMAA 96 percent, MetalFX 91 percent, TAA 76 percent" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
-          <figure><img src="../img/nextgen-1.png" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
-          <figure><img src="../img/nextgen-3.png" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
+          <figure><img src="../img/compare.webp" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
+          <figure><img src="../img/cost.webp" alt="GPU cost per frame and added latency at 4K in Unity URP, RTX 4070 Laptop, Direct3D 12. GPU time added per frame: CF 0.30 ms, SMAA 0.61 ms, CT2x 0.86 ms, C2x 0.95 ms, TAA 1.44 ms, MSAA + SMAA 1.55 ms, MetalFX about 3.52 ms, FSR 3.1 5.16 ms. Latency added: CF 0.88 ms, SMAA 1.89 ms, CT2x 2.62 ms, C2x 2.82 ms, TAA 4.33 ms, MSAA + SMAA 4.72 ms, FSR 3.1 15.41 ms. Fine texture detail kept against no anti-aliasing: CF 98 percent, C2x 98 percent, SMAA 97 percent, CT2x 96 percent, MSAA + SMAA 96 percent, MetalFX 91 percent, TAA 76 percent" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
+          <figure><img src="../img/nextgen-1.webp" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
+          <figure><img src="../img/nextgen-3.webp" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
         </div>
         <button type="button" class="nav prev" id="shots-prev" aria-label="Previous shot">‹</button>
         <button type="button" class="nav next" id="shots-next" aria-label="Next shot">›</button>
@@ -542,8 +542,8 @@
         motes.push({
           x: Math.random() * w, y: Math.random() * h,
           r: Math.random() * 9 + 4,
-          vx: (Math.random() - 0.35) * 0.16,
-          vy: -(Math.random() * 0.12 + 0.04),
+          vx: (Math.random() - 0.35) * 0.32,
+          vy: -(Math.random() * 0.24 + 0.08),
           a: Math.random() * 0.45 + 0.2,
           da: (Math.random() * 0.004 + 0.002) * (Math.random() > 0.5 ? 1 : -1)
         });
@@ -552,6 +552,8 @@
 
     // Не чаще 60 кадров в секунду: слово Максима 21.09.2026 «да, ты можешь ограничить до 60 фпс». Шаг искр задан
     // на кадр, поэтому на экране 120 Гц они к тому же летели вдвое быстрее задуманного; теперь скорость одна везде.
+    // Шаг удвоен 22.09.2026 по слову Максима «мне нравилась скорость анимации на обложке вдвое быстрее … под
+    // анимацией я имею ввиду скорость частиц»: при 60 кадрах искры идут так же, как прежде шли при 120.
     var last = 0;
     function frame(now) {
       raf = requestAnimationFrame(frame);
