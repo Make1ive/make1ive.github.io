@@ -73,6 +73,7 @@
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--acc);
+    text-wrap: wrap;
   }
   .display {
     font-family: var(--display);
@@ -129,11 +130,13 @@
       linear-gradient(180deg, rgba(11,15,18,.35) 0%, rgba(11,15,18,0) 30%, rgba(11,15,18,.55) 78%, var(--bg) 100%);
   }
   .hero .wrap { padding-block: clamp(80px, 11vh, 150px) clamp(40px, 6vh, 80px); display: grid; gap: var(--lead); }
+  /* Главный заголовок страницы для поисковиков — строка «Colibri AA · Anti-aliasing for Unity URP» (h1.eyebrow), слоган
+     остался крупным текстом (слово Максима 21.09: «1 ну давай да»); на вид всё как было, когда слоган был h1. */
   /* кегль считается и по ширине, и по высоте окна: заголовок, подпись и кнопки держатся в одном экране */
-  .hero h1 { font-size: min(8.6vw, 13vh, 146px); max-width: 11ch; }
+  .hero .slogan { font-size: min(8.6vw, 13vh, 146px); max-width: 11ch; text-wrap: balance; }
   /* на узком экране расширенное начертание не влезает: берём обычную ширину букв, кегль остаётся крупным */
-  @media (max-width: 560px) { .hero h1 { font-stretch: 100%; font-size: min(12vw, 8vh, 64px); max-width: none; } }
-  .hero h1 .iris {
+  @media (max-width: 560px) { .hero .slogan { font-stretch: 100%; font-size: min(12vw, 8vh, 64px); max-width: none; } }
+  .hero .slogan .iris {
     background: linear-gradient(92deg, var(--iris-a) 0%, var(--iris-b) 48%, var(--iris-c) 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }

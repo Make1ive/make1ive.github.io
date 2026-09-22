@@ -18,6 +18,50 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0f12">
+<!-- Разметка для Google: студия и два ролика со страницы (слово Максима 21.09, «4. Ок»). Сборщик сверяет ролики
+     разметки с роликами страницы, см. check_seo в scripts/site_bundle.py. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://make1ive.com/#studio",
+   "name": "Make1ive Studio",
+   "url": "https://make1ive.com/",
+   "logo": "https://make1ive.com/img/mark.jpg",
+   "email": "support@make1ive.com",
+   "sameAs": [
+    "https://www.youtube.com/@make1iv3"
+   ]
+  },
+  {
+   "@type": "VideoObject",
+   "name": "SMAA vs MSAA vs TAA vs Colibri in Unity URP | Colibri AA Comparison",
+   "description": "Colibri AA against the usual anti-aliasing in Unity 6+ URP: same frame, same scene, side by side under a 4× loupe.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/vkdOkAmnA54/maxresdefault.jpg",
+   "uploadDate": "2026-09-21T17:23:58-07:00",
+   "duration": "PT3M24S",
+   "embedUrl": "https://www.youtube.com/embed/vkdOkAmnA54",
+   "publisher": {
+    "@id": "https://make1ive.com/#studio"
+   }
+  },
+  {
+   "@type": "VideoObject",
+   "name": "Ultralight Unity URP Anti-Aliasing | Colibri AA Showcase",
+   "description": "Unity editor walkthrough of Colibri AA on an intentionally difficult stress-test scene.",
+   "thumbnailUrl": "https://i.ytimg.com/vi/f-O645TiMJc/maxresdefault.jpg",
+   "uploadDate": "2026-09-21T02:58:15-07:00",
+   "duration": "PT6M11S",
+   "embedUrl": "https://www.youtube.com/embed/f-O645TiMJc",
+   "publisher": {
+    "@id": "https://make1ive.com/#studio"
+   }
+  }
+ ]
+}
+</script>
 <!-- шрифт запрашивается сразу с разметкой: без этого он ждал разбора стилей, и текст сперва рисовался запасным
      шрифтом, а потом перескакивал — слово Максима 21.09.2026 «шрифты тоже как будто с задержкой небольшой подтянулись» -->
 <link rel="preload" href="font/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -46,8 +90,8 @@
   <img src="img/hero.jpg" alt="A hummingbird in flight, iridescent blue and green plumage lit against a dark ground" fetchpriority="high">
   <canvas class="motes" id="motes" aria-hidden="true"></canvas>
   <div class="wrap">
-    <p class="eyebrow">Colibri AA · Anti-aliasing for Unity URP</p>
-    <h1 class="display">Weightless. <span class="iris">Instant.</span> Exact.</h1>
+    <h1 class="eyebrow">Colibri AA · Anti-aliasing for Unity URP</h1>
+    <p class="display slogan">Weightless. <span class="iris">Instant.</span> Exact.</p>
     <p class="lede">Colibri AA is an ultra-fast anti-aliasing suite built on CMAA2. Designed for the sharpest image with no blur, at the highest performance possible.</p>
     <div class="cta">
       <a class="btn primary" href="#demo">Watch the demo</a>
