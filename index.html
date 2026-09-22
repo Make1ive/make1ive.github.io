@@ -125,11 +125,11 @@
     <p class="foot">Edges, textures, motion — the same scene with the mode changing underneath the loupe: the flag and its rope, the merlons, the window bars. Fantasy Kingdom is a demo scene by Unity Technologies, used for comparison only.</p>
 
     <div class="table-row">
-      <img src="img/fps.png" alt="Frame rate of ten anti-aliasing methods in Fantasy Kingdom at 2560×1440, on an RTX 4070 Laptop and an Apple M2 Pro">
+      <img src="img/fps.png" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440: Colibri AA modes against SMAA, TAA, MSAA 4x + SMAA, FSR 3.1 and MetalFX on an RTX 4070 Laptop and an Apple M2 Pro">
       <div>
         <div class="head right">
-          <p class="eyebrow">Four modes</p>
-          <h2 class="display">Pick your mode.</h2>
+          <p class="eyebrow">Four anti-aliasing modes</p>
+          <h2 class="display">Pick your AA mode.</h2>
         </div>
         <div class="modes">
           <div class="row">
@@ -160,7 +160,7 @@
     <div class="tune">
       <div class="head" style="margin-bottom:0">
         <p class="eyebrow">It tunes itself</p>
-        <h2 class="display">To the project, the engine and the API.</h2>
+        <h2 class="display">To the project, Unity and the API.</h2>
         <p class="lede">One switch in the renderer. Everything below is decided by reading what the project already is — colour range, post-processing, MSAA, engine version, API and graphics device. The same package gives the most optimized pass on every machine it lands on.</p>
       </div>
       <div class="rules" aria-label="How Colibri AA adapts">
@@ -181,8 +181,8 @@
     <div class="shots">
       <div class="carousel" id="shots">
         <div class="track" id="shots-track" tabindex="0" aria-label="Comparison shots">
-          <figure><img src="img/compare.png" alt="Nine anti-aliasing methods on the same Fantasy Kingdom crop, with matching-pixel percentages" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
-          <figure><img src="img/cost.png" alt="Cost per frame and added latency to the screen for each method at 3840×2160" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
+          <figure><img src="img/compare.png" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
+          <figure><img src="img/cost.png" alt="GPU cost per frame and added latency at 4K in Unity URP: Colibri AA modes against SMAA, TAA, MSAA + SMAA, MetalFX and FSR 3.1" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
           <figure><img src="img/nextgen-1.png" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
           <figure><img src="img/nextgen-3.png" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
         </div>
@@ -194,9 +194,9 @@
       <div class="side">
         <div class="head">
           <p class="eyebrow">Side by side</p>
-          <h2 class="display">The same frame, every method.</h2>
+          <h2 class="display">Colibri AA vs SMAA, TAA, MSAA and FSR.</h2>
         </div>
-        <p class="cap">Nine methods on one crop, the cost of each in milliseconds, and what the pass changes inside a frame. Every figure here comes from a run on our own stand.</p>
+        <p class="cap">Nine methods on one crop — No AA, the three Colibri AA modes, SMAA, MSAA 4× + SMAA, TAA, FSR 3.1 and MetalFX — the cost of each in milliseconds, and what the pass changes inside a frame. Every figure here comes from a run on our own stand.</p>
       </div>
     </div>
 
@@ -229,8 +229,8 @@
         </a>
       </div>
       <div class="text">
-        <p class="eyebrow">Inside the editor</p>
-        <h2 class="display">See the plugin at work.</h2>
+        <p class="eyebrow">Inside the Unity editor</p>
+        <h2 class="display">See Colibri AA at work.</h2>
         <p class="lede">The Colibri window with its settings, our anti-aliasing stress stand, and every mode one after another — what each of them does to grids, thin wires and glossy highlights.</p>
         <div class="dl">
           <a class="btn" href="#demo" data-fill="download-windows"><span>Download for Windows</span><span>64-bit</span></a>
