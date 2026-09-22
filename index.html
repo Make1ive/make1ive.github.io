@@ -127,7 +127,7 @@
     <p class="foot">Edges, textures, motion — the same scene with the mode changing underneath the loupe: the flag and its rope, the merlons, the window bars. Fantasy Kingdom is a demo scene by Unity Technologies, used for comparison only.</p>
 
     <div class="table-row">
-      <img src="img/fps.png" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440: Colibri AA modes against SMAA, TAA, MSAA 4x + SMAA, FSR 3.1 and MetalFX on an RTX 4070 Laptop and an Apple M2 Pro">
+      <img src="img/fps.png" alt="Frame rate in Unity URP, Fantasy Kingdom at 2560×1440. RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138, CT2x Ultra 136, SMAA 135, TAA 131, CT2x 122, C2x 122, MSAA 4x + SMAA 112, FSR 3.1 105. Apple M2 Pro, Metal: No AA 103, CF 97, SMAA 96, CT2x Ultra 95, TAA 95, CT2x 91, C2x 88, MSAA 4x + SMAA 79, MetalFX 68, FSR 3.1 60">
       <div>
         <div class="head right">
           <p class="eyebrow">Four anti-aliasing modes</p>
@@ -184,7 +184,7 @@
       <div class="carousel" id="shots">
         <div class="track" id="shots-track" tabindex="0" aria-label="Comparison shots">
           <figure><img src="img/compare.png" alt="Anti-aliasing comparison in Unity URP on one Fantasy Kingdom crop: No AA, Colibri AA modes CF, C2x and CT2x, SMAA, MSAA + SMAA, TAA, FSR 3.1 and MetalFX, with the share of fine detail each keeps" data-cap="Nine methods on one crop. The percentage is how many pixels match the 8× supersampled reference." loading="lazy"></figure>
-          <figure><img src="img/cost.png" alt="GPU cost per frame and added latency at 4K in Unity URP: Colibri AA modes against SMAA, TAA, MSAA + SMAA, MetalFX and FSR 3.1" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
+          <figure><img src="img/cost.png" alt="GPU cost per frame and added latency at 4K in Unity URP, RTX 4070 Laptop, Direct3D 12. GPU time added per frame: CF 0.30 ms, SMAA 0.61 ms, CT2x 0.86 ms, C2x 0.95 ms, TAA 1.44 ms, MSAA + SMAA 1.55 ms, MetalFX about 3.52 ms, FSR 3.1 5.16 ms. Latency added: CF 0.88 ms, SMAA 1.89 ms, CT2x 2.62 ms, C2x 2.82 ms, TAA 4.33 ms, MSAA + SMAA 4.72 ms, FSR 3.1 15.41 ms. Fine texture detail kept against no anti-aliasing: CF and C2x 98 percent, SMAA 97, CT2x and MSAA + SMAA 96, MetalFX 91, TAA 76" data-cap="Cost per frame and latency to the screen at 3840×2160. Latency grows three times faster than cost, for every method." loading="lazy"></figure>
           <figure><img src="img/nextgen-1.png" alt="Slide: what Colibri Flash does that the built-in methods do not" data-cap="What this pass adds to Intel CMAA2 inside Unity: new platforms, wave intrinsics, half precision and the two-frame mode." loading="lazy"></figure>
           <figure><img src="img/nextgen-3.png" alt="Slide: how Colibri AA configures itself per project and device" data-cap="What the plugin reads from the project before it picks a pass." loading="lazy"></figure>
         </div>
