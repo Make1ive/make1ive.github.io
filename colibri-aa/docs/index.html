@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Colibri AA Documentation — Anti-Aliasing for Unity URP</title>
+<meta name="description" content="Colibri AA documentation: CF, C2x and CT2x anti-aliasing modes for Unity 6 URP, requirements, setup, settings and supported graphics APIs.">
+<link rel="canonical" href="https://make1ive.com/colibri-aa/docs/">
+<link rel="icon" href="/img/icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Make1ive Studio">
+<meta property="og:title" content="Colibri AA Documentation — Anti-Aliasing for Unity URP">
+<meta property="og:description" content="Colibri AA documentation: CF, C2x and CT2x anti-aliasing modes for Unity 6 URP, requirements, setup, settings and supported graphics APIs.">
+<meta property="og:url" content="https://make1ive.com/colibri-aa/docs/">
+<meta property="og:image" content="https://make1ive.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0f12">
+<!-- шрифт запрашивается сразу с разметкой: без этого он ждал разбора стилей, и текст сперва рисовался запасным
+     шрифтом, а потом перескакивал — слово Максима 21.09.2026 «шрифты тоже как будто с задержкой небольшой подтянулись» -->
+<link rel="preload" href="/font/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/colibri-aa/#top" aria-label="Make1ive Studio, home">
+      <img src="/img/mark.jpg" alt="">
+      <span>Make1ive Studio</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/colibri-aa/#colibri">Colibri AA</a>
+      <a href="/colibri-aa/#adapts">Auto-tuning</a>
+      <a href="/colibri-aa/#proof">Benchmarks</a>
+      <a href="/colibri-aa/#demo">Demo</a>
+      <a href="/colibri-aa/#games">The Glass Ark</a>
+      <a href="/colibri-aa/#studio">Support</a>
+    </nav>
+    <a class="btn primary get" href="/colibri-aa/#demo" data-fill="asset-store-listing">Get asset</a>
+  </div>
+</header>
+
+<main class="docpage">
+  <div class="wrap">
+    <p class="eyebrow">Colibri AA · Anti-aliasing for Unity URP</p>
+    <h1 class="display">Documentation</h1>
+    <div class="md">
+<h2>Colibri AA: anti-aliasing for Unity URP</h2>
+<p>Three anti-aliasing modes in one renderer feature, one mode at a time:</p>
+<ul><li><strong>CF</strong> (Colibri Flash): morphological anti-aliasing of the frame, without MSAA.</li><li><strong>C2x</strong>: Colibri Flash on top of MSAA 2x, or MSAA 4x with <strong>MSAA 4x</strong> in Advanced.</li><li><strong>CT2x</strong> (Colibri Temporal): two frames with a sub-pixel camera offset blended on top of MSAA 2x. It runs on the main camera of the renderer; <strong>Every Camera</strong> in Advanced runs it on every camera of the renderer, each with its own history.</li></ul>
+<h3>Requirements</h3>
+<ul><li>Unity 6.0 or newer with the Universal Render Pipeline 17.0.4 or newer, rendering through the Render Graph.</li><li>Compute shaders: Metal, Direct3D 11, Direct3D 12 or Vulkan.</li></ul>
+<h3>Tested on</h3>
+<p>Three states, and they mean different things. <strong>Measured</strong> — run and timed by us. <strong>Runs</strong> — run and looked at, without numbers. <strong>Not tested</strong> — we have no such device, and the package makes no promise about it.</p>
+<table><thead><tr><th></th><th>state</th></tr></thead><tbody><tr><td><strong>Graphics API</strong></td><td>Direct3D 12 — measured · Direct3D 11, Vulkan, Metal — runs</td></tr><tr><td><strong>Unity</strong></td><td>6000.0 · 6000.3 · 6000.6 · 6000.7 — runs; the numbers in the store listing come from 6000.7</td></tr><tr><td><strong>URP</strong></td><td>17.0 through 17.7 — runs. The upscaler framework of 17.3 and newer is read through reflection; on 17.0 the older field is used instead</td></tr><tr><td><strong>GPU</strong></td><td>NVIDIA RTX 4070 Laptop — measured · Apple M2 Pro — runs</td></tr><tr><td><strong>Rendering paths</strong></td><td>Forward, Forward+, Deferred, Deferred+, 2D — run; Deferred has no MSAA in URP, see Limitations</td></tr><tr><td><strong>Colour space</strong></td><td>Linear and Gamma — run</td></tr><tr><td><strong>VR</strong></td><td>not supported yet</td></tr><tr><td><strong>Not tested at all</strong></td><td>consoles · Nintendo Switch · WebGPU · WebGL · hardware dynamic resolution</td></tr></tbody></table>
+<h3>Installation</h3>
+<ol><li>Install the package. The <strong>Colibri AA</strong> tab opens next to the Inspector.</li><li>Press <strong>Turn on</strong>. Colibri AA is added to every renderer of the project's URP Assets, and their MSAA is set for the mode.</li><li>Choose the mode: <strong>CF</strong>, <strong>C2x</strong> or <strong>CT2x</strong>. The settings of the mode are under <strong>Main</strong> and <strong>Advanced</strong>; hover a setting for what it does. <strong>Reset to Defaults</strong> under each mode puts only that mode back to the factory values.</li></ol>
+<p>The window is under <strong>Window &gt; Rendering &gt; Colibri AA</strong>. The Colibri AA entry in a renderer asset has a button that opens it too.</p>
+<p>MSAA follows the mode while Colibri AA is on. <strong>Restore stock</strong> puts the MSAA values back and removes the Colibri AA lines Turn on added. If a renderer loses its line or the line is switched off, <strong>Turn on</strong> becomes available again and switches it back on.</p>
+<p>Turn on also sets plain Bilinear scaling in the URP Assets that use an upscaler with its own anti-aliasing or sharpening (STP, FSR, MetalFX, DLSS); Restore stock brings the upscaler back. While Colibri AA renders a camera, the camera's own anti-aliasing (FXAA, SMAA, TAA) is off for that frame; the camera component keeps its setting.</p>
+<h3>Anti-aliasing menu in your game</h3>
+<p>Most games let the player pick anti-aliasing in the settings. Colibri AA takes one line per menu item:</p>
+<pre><code>using Make1iveStudio.Colibri;
+
+ColibriAA.Use(ColibriChoice.CF);    // Colibri Flash
+ColibriAA.Use(ColibriChoice.CT2x);  // MSAA 2x and two frames
+ColibriAA.Use(ColibriChoice.Off);   // Colibri AA off, the camera's own anti-aliasing works</code></pre>
+<p>The call does the three things a hand-written menu has to remember:</p>
+<ul><li>It sets <strong>every</strong> Colibri AA line in the project. A project with a URP Asset per quality level has a line in each, so a quality change made later in the same menu keeps the choice.</li><li>It sets the <strong>MSAA</strong> the mode is built on: C2x and CT2x need MSAA 2x, CF and Ultra need none.</li><li>With <strong>Off</strong> the lines stay in the renderers and do nothing, and the camera's own FXAA, SMAA or TAA works as usual. Colibri AA turns the camera's anti-aliasing off only for the frames it anti-aliases itself, and never changes the camera component.</li></ul>
+<p>The choices are <strong>Off</strong>, <strong>CF</strong>, <strong>C2x</strong>, <strong>CT2x</strong> and <strong>Ultra</strong>. Ultra is CT2x with Colibri Flash in place of MSAA: it brings the two-frame blend to a project or a camera that renders without MSAA.</p>
+<h4>Each menu item in code</h4>
+<table><thead><tr><th>Menu item</th><th>Code</th></tr></thead><tbody><tr><td>Off</td><td><code>ColibriAA.Use(ColibriChoice.Off);</code> and the camera's anti-aliasing set to None</td></tr><tr><td>FXAA, SMAA, TAA</td><td><code>ColibriAA.Use(ColibriChoice.Off);</code> and the camera set to that anti-aliasing</td></tr><tr><td>MSAA 4x</td><td><code>ColibriAA.Use(ColibriChoice.Off, msaaWhenOff: 4);</code></td></tr><tr><td>CF, C2x, CT2x, Ultra</td><td><code>ColibriAA.Use(ColibriChoice.CF);</code> and so on; nothing to set on the camera</td></tr></tbody></table>
+<p><strong>Off sets MSAA to 1x</strong> unless you pass another count, because FXAA, SMAA and TAA run without MSAA.</p>
+<h4>A complete menu</h4>
+<p>Put this script on any object, give it the main camera, fill a dropdown with the <code>Items</code> below in the same order, and hook <code>Pick</code> to the dropdown's <strong>On Value Changed</strong>.</p>
+<pre><code>using Make1iveStudio.Colibri;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
+public class AntiAliasingMenu : MonoBehaviour
+{
+    public Camera mainCamera;
+
+    public static readonly string[] Items = { "Off", "FXAA", "SMAA", "TAA", "MSAA 4x", "CF", "CT2x" };
+
+    public void Pick(int item)
+    {
+        var camera = mainCamera.GetUniversalAdditionalCameraData();
+        camera.antialiasing = AntialiasingMode.None;
+        switch (Items[item])
+        {
+            case "Off":     ColibriAA.Use(ColibriChoice.Off); break;
+            case "FXAA":    ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.FastApproximateAntialiasing; break;
+            case "SMAA":    ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing; break;
+            case "TAA":     ColibriAA.Use(ColibriChoice.Off); camera.antialiasing = AntialiasingMode.TemporalAntiAliasing; break;
+            case "MSAA 4x": ColibriAA.Use(ColibriChoice.Off, msaaWhenOff: 4); break;
+            case "CF":      ColibriAA.Use(ColibriChoice.CF); break;
+            case "CT2x":    ColibriAA.Use(ColibriChoice.CT2x); break;
+        }
+    }
+}</code></pre>
+<h4>Good to know</h4>
+<ul><li><strong><code>ColibriAA.Current</code></strong> tells which choice is on, to show it as selected when the menu opens.</li><li><strong>Until the first call</strong> the lines run as <strong>Turn on</strong> left them, in the mode chosen in the window.</li><li><strong>In Play Mode in the editor</strong> whatever <code>Use</code> changes is put back when Play Mode ends, so trying the menu leaves the project as it was. Called outside Play Mode, from an editor script, the change stays.</li><li><strong>C2x and CT2x need a camera with Allow MSAA on.</strong> If your camera has it off, offer CF and Ultra: they need no MSAA.</li></ul>
+<h3>Removing the package</h3>
+<p>Press <strong>Restore stock</strong> before you remove the package. Otherwise the renderers keep an entry whose script is gone, the URP Assets keep the MSAA and scaling of the mode, and materials with the <strong>Colibri AA/Lit</strong> shader have no shader to render with.</p>
+<h3>Anti-Shimmer</h3>
+<p>Small highlights on curved and bumpy surfaces flicker in motion. <strong>Anti-Shimmer</strong> (Main of C2x and CT2x) spreads such highlights slightly before they can flicker. The filter works inside the surface shader, before lighting:</p>
+<ul><li><strong>Materials:</strong> select the <strong>Colibri AA/Lit</strong> shader. It is the URP Lit shader with the filter inside, built by the package from the Lit shader of the installed URP, so it keeps every Lit setting and follows URP updates.</li><li><strong>Hand-written shader:</strong> in the lit passes, <code>#pragma multi_compile_fragment _ COLIBRI_SPECULAR_AA</code> and <code>#include "Packages/com.make1ivestudio.colibri/ShaderLibrary/ColibriSpecularAA.hlsl"</code>, then in the fragment stage, before lighting: <code>smoothness = ColibriSpecularAA(smoothness, geometricNormalWS);</code></li><li><strong>Shader Graph:</strong> a Boolean Keyword <code>COLIBRI_SPECULAR_AA</code> (Multi Compile, Global) and a Custom Function node with <code>ColibriSpecularAA.hlsl</code> as the source and <code>ColibriSpecularAA</code> as the name; inputs Smoothness (Float) and NormalWS (Vector 3, world-space normal), output Out into Smoothness.</li></ul>
+<p>Colibri AA enables the filter only for the cameras it renders while Anti-Shimmer is on. Otherwise the shaders are compiled without it, and it costs nothing.</p>
+<h3>Upscalers</h3>
+<p><strong>Turn on</strong> puts the URP Assets that use an upscaler with its own anti-aliasing or sharpening (STP, FSR, MetalFX, DLSS) back to plain Bilinear scaling, and <strong>Restore stock</strong> brings the upscaler back.</p>
+<p>If the game lets the player pick an upscaler at runtime, Colibri AA steps aside by itself: on a camera anti-aliased by a temporal upscaler — STP, DLSS, FSR 2 and 3, MetalFX — the line does nothing and says so once in the console. Switch Colibri AA off while such an upscaler is on, and give the player's choice back when the upscaler is turned off:</p>
+<pre><code>ColibriAA.Use(upscalerOn ? ColibriChoice.Off : playerChoice);</code></pre>
+<p>FSR 1.0 does not anti-alias the frame: Colibri AA keeps working with it.</p>
+<h3>Limitations</h3>
+<ul><li><strong>CT2x without Anti-Ghosting</strong> takes motion from the camera and depth only, which costs less; fast moving objects can leave a trail. <strong>Anti-Ghosting</strong> gives them their own motion vectors and removes the trail at the cost of drawing them once more. Do not turn it on just in case: the trail is often invisible to the eye, and we had to build dedicated scenes just to see it.</li><li><strong>The camera renders into an intermediate texture</strong> while Colibri AA works on it. In a project where URP would otherwise draw straight to the screen — post-processing, HDR, MSAA, the depth texture and the opaque texture all off — this adds that texture and a copy to the screen on top of the anti-aliasing itself. Measured on the RTX 4070 Laptop with Direct3D 12 at 2560×1440, the addition could not be told apart from the measurement noise of about 0.01 ms per frame.</li><li><strong>A frame without HDR is an 8-bit sRGB texture in the Linear colour space,</strong> and on Direct3D 12, Direct3D 11 and Vulkan a compute shader cannot write it. Colibri Flash then works in a texture of its own and copies the frame in first: 0.05 ms per frame at 2560×1440 on the same machine. Metal writes such a frame directly.</li><li><strong>Deferred and Deferred+ rendering paths</strong> have no MSAA in URP: C2x runs as CF, and CT2x blends two frames without MSAA.</li><li><strong>MSAA is often off in a URP project by its author's choice, and then C2x and CT2x run without it.</strong> A camera with Allow MSAA off gets no multisampling whatever the URP Asset holds. Projects built around screen-space effects — ambient occlusion, fog, decals — commonly ship that way, because those effects read the depth texture and with MSAA the pipeline has to produce it by a pass of its own. Unity's own Fantasy Kingdom sample is one: every quality level ships MSAA 1 and the camera has Allow MSAA off. <strong>CF and Ultra Performance need no MSAA and run in any of these projects;</strong> for C2x and CT2x the camera has to allow it. The window says so when it happens.</li><li><strong>The 2D renderer</strong> draws straight to the screen unless something asks it for an intermediate texture, so the line asks for one while it works. CF and C2x anti-alias sprites there. CT2x blends two frames without motion vectors, which the 2D renderer never draws: moving sprites leave a trail, and with <strong>Anti-Ghosting</strong> on CT2x does not run at all there and says so once in the console.</li><li><strong>Pixel Perfect Camera:</strong> a camera with that component is left alone, since the staircase of pixel art is meant to be seen. The <strong>Pixel Perfect Camera</strong> setting, shown for a 2D renderer, anti-aliases it anyway.</li><li><strong>Overlay cameras</strong> of a camera stack are not anti-aliased by Colibri Flash: they draw on top of the frame their base camera has already anti-aliased. Material previews and reflection probes are not anti-aliased either.</li><li><strong>Colibri Flash builds its edge lists with atomic operations of compute shaders.</strong> Where the device has no wave intrinsics, Colibri AA checks once at startup that these operations work; if they do nothing, Colibri Flash turns itself off with one warning instead of leaving a black frame, and CT2x on MSAA keeps working.</li><li><strong>XR and stereo rendering</strong> are not supported: XR cameras are rendered without Colibri AA.</li><li><strong>Render Graph compatibility mode</strong> of Unity 6.0 to 6.3 is not supported: Colibri AA stays off there and logs one warning.</li><li><strong>On a URP version whose internals have moved</strong>, Colibri AA falls back rather than fails: it copies the frame where it would otherwise write into the camera colour directly, and builds its copy of the Lit shader without Anti-Shimmer if URP no longer calls the function the filter replaces. Both leave a message in the console, and Debug Mode names the path that was taken. The frame is correct in either case; the fallback costs one full-frame copy.</li></ul>
+<h3>Debug Mode</h3>
+<p>Turn on <strong>Debug Mode</strong> at the bottom of the settings when something looks wrong, and reproduce the problem. Colibri AA rewrites a report every two seconds while a camera renders with it: the device, the URP Asset and renderers, the Colibri AA settings, every camera and what Colibri AA did for it, the pass counters, automatic checks, and the errors logged meanwhile. <strong>Show Report</strong> opens its folder: <code>Logs/ColibriAA/ColibriAA-Report.txt</code> in the project, or <code>ColibriAA-Report.txt</code> in <code>Application.persistentDataPath</code> in a player. Send the file with your problem report. Debug Mode changes nothing in the image; turn it off before shipping.</p>
+<h3>License</h3>
+<p>Colibri AA is licensed under the <a href="https://unity.com/legal/as-terms" target="_blank" rel="noopener">Unity Asset Store EULA</a>, see <code>LICENSE</code>. It includes third-party code under its own licenses, in <code>THIRD_PARTY_LICENSES</code>: a modified version of Intel's <a href="https://github.com/GameTechDev/CMAA2" target="_blank" rel="noopener">CMAA2</a> under the Apache License 2.0, code derived from Alexander Malyutin's Unity URP port of CMAA2 under the MIT License, and color packing code from Microsoft MiniEngine under the MIT License.</p>
+    </div>
+    <div class="md">
+<h2>Setup guide</h2>
+<p>Colibri AA — setup in four steps</p>
+<ol><li>Import the package into a Unity 6 project that uses the Universal Render Pipeline.</li><li>Open Window ▸ Colibri AA and press Turn on. The window adds the render feature to every URP renderer in the project, sets the MSAA level the chosen mode needs, and keeps a backup of what it changed.</li><li>Pick a mode: CF, C2x, CT2x or CT2x Ultra. Everything else stays on Auto — the pass reads the colour range, post-processing, MSAA, engine version and graphics API by itself.</li><li>From game code, switch modes with one call:</li></ol>
+<p>Make1ive.Colibri.ColibriAA.Use(ColibriChoice.CF);</p>
+<p>Restore stock puts the project back exactly as it was: the feature rows are removed and the MSAA levels return to the saved values.</p>
+<p>Support: write to the studio at <a href="https://make1ive.com/colibri-aa" target="_blank" rel="noopener">make1ive.com/colibri-aa</a> with your Unity version and graphics API in the first line.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand"><img src="/img/mark.jpg" alt=""><span>Make1ive Studio</span></div>
+        <p>Rendering tools for Unity, built for our own game first. Measured on our own stand, on named hardware.</p>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Tools</p>
+        <a href="/colibri-aa/#colibri">Colibri AA for URP</a>
+        <a href="/colibri-aa/#adapts">Auto-tuning</a>
+        <a href="/colibri-aa/#proof">Benchmarks</a>
+        <a href="/colibri-aa/#demo">Demo builds</a>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Games and studio</p>
+        <a href="/colibri-aa/#games">The Glass Ark</a>
+        <a href="/colibri-aa/#studio">The studio</a>
+      </div>
+      <div class="foot-col">
+        <p class="eyebrow">Developer</p>
+        <a href="/colibri-aa/docs/" id="open-docs-foot">Documentation</a>
+        <a href="/colibri-aa/#studio" data-fill="asset-store-publisher">Unity Asset Store</a>
+        <a href="mailto:support@make1ive.com">Write to the studio</a>
+      </div>
+    </div>
+    <div class="foot-line">
+      <p>© 2026 Make1ive Studio. All rights reserved.</p>
+      <p class="foot-legal">Unity and Universal Render Pipeline are trademarks of Unity Technologies. Fantasy Kingdom is a demo scene by Unity Technologies, shown in comparisons only and not included with Colibri AA. Colibri AA is built on Intel CMAA2 (Apache 2.0) and on the first URP port by Alexander Malyutin (MIT).</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

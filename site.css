@@ -597,32 +597,32 @@ dialog.docs .body pre {
 }
 
 /* README в окне документации — отрисованный, а не сырой Markdown */
-dialog.docs .md { max-width: 78ch; color: var(--ink-2); font-size: 15px; line-height: 1.65; }
-dialog.docs .md > :first-child { margin-top: 0; }
-dialog.docs .md h2, dialog.docs .md h3, dialog.docs .md h4 {
+:is(dialog.docs, .docpage) .md { max-width: 78ch; color: var(--ink-2); font-size: 15px; line-height: 1.65; }
+:is(dialog.docs, .docpage) .md > :first-child { margin-top: 0; }
+:is(dialog.docs, .docpage) .md h2, :is(dialog.docs, .docpage) .md h3, :is(dialog.docs, .docpage) .md h4 {
   font-family: var(--display); color: var(--ink); line-height: 1.15; letter-spacing: .01em; margin: 1.9em 0 .6em;
 }
-dialog.docs .md h2 { font-size: clamp(22px, 2vw, 28px); font-stretch: 112%; font-weight: 800; }
-dialog.docs .md h3 { font-size: 18px; font-stretch: 112%; font-weight: 800; padding-top: 1.1em; border-top: 1px solid var(--line); }
-dialog.docs .md h4 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--acc); }
-dialog.docs .md p { margin: .8em 0; }
-dialog.docs .md strong { color: var(--ink); font-weight: 700; }
-dialog.docs .md a { color: var(--acc); border-bottom: 1px solid rgba(77, 182, 236, .35); }
-dialog.docs .md ul, dialog.docs .md ol { margin: .8em 0; padding-left: 1.3em; display: grid; gap: .45em; }
-dialog.docs .md li::marker { color: var(--acc); }
-dialog.docs .md code {
+:is(dialog.docs, .docpage) .md h2 { font-size: clamp(22px, 2vw, 28px); font-stretch: 112%; font-weight: 800; }
+:is(dialog.docs, .docpage) .md h3 { font-size: 18px; font-stretch: 112%; font-weight: 800; padding-top: 1.1em; border-top: 1px solid var(--line); }
+:is(dialog.docs, .docpage) .md h4 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--acc); }
+:is(dialog.docs, .docpage) .md p { margin: .8em 0; }
+:is(dialog.docs, .docpage) .md strong { color: var(--ink); font-weight: 700; }
+:is(dialog.docs, .docpage) .md a { color: var(--acc); border-bottom: 1px solid rgba(77, 182, 236, .35); }
+:is(dialog.docs, .docpage) .md ul, :is(dialog.docs, .docpage) .md ol { margin: .8em 0; padding-left: 1.3em; display: grid; gap: .45em; }
+:is(dialog.docs, .docpage) .md li::marker { color: var(--acc); }
+:is(dialog.docs, .docpage) .md code {
   font-family: var(--mono); font-size: .88em; color: var(--acc-hi);
   background: var(--bg-3); border: 1px solid var(--line); border-radius: 4px; padding: .08em .38em;
 }
-dialog.docs .md pre {
+:is(dialog.docs, .docpage) .md pre {
   margin: 1em 0; padding: 16px 18px; overflow-x: auto; white-space: pre;
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px;
 }
-dialog.docs .md pre code { background: none; border: 0; padding: 0; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
-dialog.docs .md table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 14px; display: block; overflow-x: auto; }
-dialog.docs .md th, dialog.docs .md td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
-dialog.docs .md th { color: var(--ink-3); font-family: var(--display); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
-dialog.docs .md td:first-child { color: var(--ink); white-space: nowrap; }
+:is(dialog.docs, .docpage) .md pre code { background: none; border: 0; padding: 0; color: var(--ink-2); font-size: 13px; line-height: 1.6; }
+:is(dialog.docs, .docpage) .md table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 14px; display: block; overflow-x: auto; }
+:is(dialog.docs, .docpage) .md th, :is(dialog.docs, .docpage) .md td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+:is(dialog.docs, .docpage) .md th { color: var(--ink-3); font-family: var(--display); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; }
+:is(dialog.docs, .docpage) .md td:first-child { color: var(--ink); white-space: nowrap; }
 
 /* ---------- искры на обложке ---------- */
 .hero canvas.motes { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
@@ -655,3 +655,13 @@ dialog.docs .acts svg { display: block; }
    Теперь на узком экране сперва заголовок и описание, под ними картинка. */
 @media (max-width: 960px) { .table-row > img, .shots > .carousel { order: 2; } }
 @media (max-width: 900px) { .demo > .stage { order: 2; } }
+
+/* ---------- страница документации и страница 404 ---------- */
+/* Документация отдельной страницей рядом с окном (слово Максима 22.09) берёт оформление текста у окна — правила .md выше. */
+.docpage { padding-block: clamp(48px, 7vw, 96px) clamp(64px, 8vw, 120px); }
+.docpage .wrap { display: grid; gap: 18px; }
+.docpage h1 { font-size: clamp(40px, 6vw, 88px); }
+.docpage .md + .md { margin-top: 40px; padding-top: 8px; border-top: 1px solid var(--line); }
+.notfound { min-height: 70vh; display: grid; align-items: center; }
+.notfound .wrap { display: grid; gap: var(--lead); padding-block: 96px; }
+.notfound h1 { font-size: clamp(48px, 8vw, 120px); }

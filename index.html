@@ -68,6 +68,8 @@
 <link rel="stylesheet" href="site.css">
 
 
+</head>
+<body>
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Make1ive Studio, home">
@@ -95,7 +97,7 @@
     <p class="lede">Colibri AA is an ultra-fast anti-aliasing suite built on CMAA2. Designed for the sharpest image with no blur, at the highest performance possible.</p>
     <div class="cta">
       <a class="btn primary" href="#demo">Watch the demo</a>
-      <button class="btn" type="button" id="open-docs">Documentation</button>
+      <a class="btn" href="/colibri-aa/docs/" id="open-docs">Documentation</a>
     </div>
   </div>
 </section>
@@ -304,7 +306,7 @@
       </div>
       <div class="foot-col">
         <p class="eyebrow">Developer</p>
-        <a href="#top" id="open-docs-foot">Documentation</a>
+        <a href="/colibri-aa/docs/" id="open-docs-foot">Documentation</a>
         <a href="#studio" data-fill="asset-store-publisher">Unity Asset Store</a>
         <a href="mailto:support@make1ive.com">Write to the studio</a>
       </div>
@@ -482,7 +484,9 @@
       current = which;
     }
     tabs.forEach(function (t) { t.addEventListener("click", function () { fill(t.dataset.doc); }); });
-    function open(e) { if (e) e.preventDefault(); fill("readme"); if (dlg.showModal) dlg.showModal(); }
+    // Кнопка — ссылка на страницу документации: её видят поисковики. Обычный клик открывает окно, с Cmd, Ctrl или Shift —
+    // страницу (слово Максима 22.09: «всплывающее окно тоже надо оставить для удобства пользователя»).
+    function open(e) { if (e && (e.metaKey || e.ctrlKey || e.shiftKey)) return; if (e) e.preventDefault(); fill("readme"); if (dlg.showModal) dlg.showModal(); }
     ["open-docs", "open-docs-foot"].forEach(function (id) {
       var b = document.getElementById(id);
       if (b) b.addEventListener("click", open);
@@ -608,8 +612,5 @@
     });
   });
 </script>
-</head>
-<body>
-
 </body>
 </html>
