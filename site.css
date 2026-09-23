@@ -240,7 +240,6 @@
   .demo h2 { font-size: var(--h2); }
   .dl { display: grid; gap: 10px; }
   .dl .btn { justify-content: space-between; }
-  .dl .note { color: var(--ink-2); }
   .dl .btn span:last-child { color: var(--ink-3); font-weight: 600; letter-spacing: .04em; font-size: 12px; }
   .note { font-size: 13px; color: var(--ink-3); }
   @media (max-width: 900px) { .demo { grid-template-columns: 1fr; } }
