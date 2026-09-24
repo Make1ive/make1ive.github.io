@@ -87,10 +87,11 @@
   .num { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-variant-numeric: tabular-nums; }
 
   /* ---------- nav ---------- */
-  /* шапка стоит на месте и не едет за прокруткой — слово Максима 20.09 */
+  /* шапка закреплена при прокрутке, чтобы «Get asset» всегда была под рукой — слово Максима 24.09; прежнее слово 20.09
+     «не едет за прокруткой» переиграно. Фон плотнее прежних .72: под закреплённой шапкой проходит страница */
   .nav {
-    position: relative; z-index: 20;
-    background: rgba(11, 15, 18, .72);
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(11, 15, 18, .92);
     border-bottom: 1px solid rgba(255,255,255,.06);
   }
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
@@ -526,10 +527,13 @@ dialog.zoom .nav.next { right: 18px; }
 .nav nav { gap: 22px; font-size: 13.5px; }
 @media (max-width: 1200px) { .nav nav a:nth-child(5) { display: none; } }
 @media (max-width: 1040px) { .nav nav a:nth-child(2) { display: none; } }
-@media (max-width: 880px) { .nav nav a:nth-child(3) { display: none; } .nav .btn.get { display: none; } }
+@media (max-width: 880px) { .nav nav a:nth-child(3) { display: none; } }
+/* на узком экране в закреплённой шапке остаются знак и «Get asset»: без этого кнопка уезжала за край на 375px */
+@media (max-width: 520px) { .nav nav { display: none; } }
+.brand span { white-space: nowrap; }
 
-/* прокрутка по ссылке встаёт на заголовок блока, а не на верхний отступ секции */
-.band, .game, .creed-band { scroll-margin-top: calc(24px - clamp(64px, 9vw, 128px)); }
+/* прокрутка по ссылке встаёт на заголовок блока, а не на верхний отступ секции; 60px — высота закреплённой шапки */
+.band, .game, .creed-band { scroll-margin-top: calc(24px + 60px - clamp(64px, 9vw, 128px)); }
 
 /* ---------- строка режима подсвечивается под курсором ---------- */
 .modes { margin-inline: -16px; margin-top: 12px; }
@@ -665,3 +669,23 @@ dialog.docs .acts svg { display: block; }
 .notfound { min-height: 70vh; display: grid; align-items: center; }
 .notfound .wrap { display: grid; gap: var(--lead); padding-block: 96px; }
 .notfound h1 { font-size: clamp(48px, 8vw, 120px); }
+
+/* ---------- подсветка раздела в шапке и свечение главной кнопки — по образцу сайта Gemini, слово Максима 24.09 ---------- */
+.nav nav a { position: relative; transition: color .2s ease; }
+.nav nav a.active { color: var(--acc-hi); }
+.nav nav a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+  background: var(--acc); box-shadow: 0 0 8px var(--acc);
+}
+.btn.primary {
+  border-color: rgba(230, 246, 255, .7);
+  box-shadow: 0 4px 20px rgba(77, 182, 236, .4);
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.btn.primary:hover {
+  border-color: #fff;
+  box-shadow: 0 8px 30px rgba(176, 230, 255, .6);
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) { .btn.primary:hover { transform: none; } }
+
