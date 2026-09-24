@@ -8,6 +8,11 @@
 - Camera cuts: set `resetHistory` on the camera for the first frame of a new shot, the same flag URP's own TAA reads.
 - Frame rate in Fantasy Kingdom at 2560×1440, RTX 4070 Laptop, Direct3D 12: No AA 144 fps, CF 138 fps, CT2x Ultra 136 fps, SMAA 135 fps, TAA 131 fps, CT2x 122 fps, C2x 122 fps, MSAA 4x + SMAA 112 fps, FSR 3.1 105 fps. Apple M2 Pro, Metal: No AA 103 fps, CF 97 fps, SMAA 96 fps, CT2x Ultra 95 fps, TAA 95 fps, CT2x 91 fps, C2x 88 fps, MSAA 4x + SMAA 79 fps, MetalFX 68 fps, FSR 3.1 60 fps.
 
+## Get it
+
+- [Colibri AA on the Unity Asset Store](https://assetstore.unity.com/packages/tools/colibri-aa-ultralight-urp-anti-aliasing-7021541): the package, released September 23, 2026
+- [Make1ive Studio on the Unity Asset Store](https://assetstore.unity.com/publishers/158866): every package by the studio
+
 ## Docs
 
 - [Documentation](https://make1ive.com/colibri-aa/docs/): installation, the game menu API, camera cuts, Anti-Shimmer, upscalers, limitations
